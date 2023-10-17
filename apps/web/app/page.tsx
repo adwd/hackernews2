@@ -14,7 +14,7 @@ export default async function Page() {
         <div>
           <ModeToggle />
           {topStories.map((storyId) => (
-            <Suspense fallback="loading">
+            <Suspense fallback="loading" key={storyId}>
               <StoryItem id={storyId} />
             </Suspense>
           ))}
