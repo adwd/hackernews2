@@ -1,4 +1,5 @@
-import { fetchTopStories } from "hackernews-api-client";
+import { fetchStory, fetchTopStories } from "hackernews-api-client";
+import { Suspense, use } from "react";
 import { Button } from "../components/ui/button";
 import { ModeToggle } from "../components/ui/mode-toggle";
 
@@ -12,11 +13,24 @@ export default async function Page() {
         <Button>Click me</Button>
         <div>
           <ModeToggle />
-          {topStories.map((story) => (
-            <p key={story}>{story}</p>
+          {topStories.map((storyId) => (
+            <Suspense fallback="loading">
+              <StoryItem id={storyId} />
+            </Suspense>
           ))}
         </div>
       </div>
     </main>
+  );
+}
+
+function StoryItem({ id }: { id: number }) {
+  const story = use(fetchStory(id));
+
+  return (
+    <div>
+      <h3>{story.title}</h3>
+      <p>{story.by}</p>
+    </div>
   );
 }
