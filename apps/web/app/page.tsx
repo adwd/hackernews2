@@ -1,7 +1,10 @@
+import { fetchTopStories } from "hackernews-api-client";
 import { Button } from "../components/ui/button";
 import { ModeToggle } from "../components/ui/mode-toggle";
 
-export default function Page(): JSX.Element {
+export default async function Page() {
+  const topStories = await fetchTopStories();
+
   return (
     <main>
       <div>
@@ -9,6 +12,9 @@ export default function Page(): JSX.Element {
         <Button>Click me</Button>
         <div>
           <ModeToggle />
+          {topStories.map((story) => (
+            <p key={story}>{story}</p>
+          ))}
         </div>
       </div>
     </main>

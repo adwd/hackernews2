@@ -72,6 +72,9 @@ importers:
       clsx:
         specifier: ^2.0.0
         version: 2.0.0
+      hackernews-api-client:
+        specifier: workspace:*
+        version: link:../../packages/hackernews-api-client
       lucide-react:
         specifier: ^0.287.0
         version: 0.287.0(react@18.2.0)
@@ -138,6 +141,18 @@ importers:
         version: 1.10.12(eslint@8.48.0)
       typescript:
         specifier: ^4.5.3
+        version: 4.9.5
+
+  packages/hackernews-api-client:
+    devDependencies:
+      eslint-config-custom:
+        specifier: workspace:*
+        version: link:../eslint-config-custom
+      tsconfig:
+        specifier: workspace:*
+        version: link:../tsconfig
+      typescript:
+        specifier: ^4.5.2
         version: 4.9.5
 
   packages/tsconfig: {}
